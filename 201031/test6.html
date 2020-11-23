@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function initData(){
+        var data = location.href.split("?");
+
+        var data2 = data[1].split("&");
+
+        var id = data2[0];
+        var pw = data2[1];
+
+        document.getElementById('content').innerHTML = id + '<br/>' + pw;
+    }
+
+    window.onload = function(){
+        initData();
+    }
+</script>
+<body>
+    <div id="content">
+    </div>
+</body>
+</html>

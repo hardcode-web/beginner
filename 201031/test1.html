@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제목입니다</title>
+<script>
+    var x = '변수 x';
+
+    function al(){
+        alert('안녕하세요');
+    }
+
+    function al2(event){
+        alert(event);
+    }
+
+    function al3(month, day){
+        alert('오늘 날짜는 '+month+'월 '+day+'일입니다');
+    }
+
+    function al4(){
+        alert(x);
+    }
+
+    function al5(x){
+        alert(x*x);
+    }
+
+    var al6 = function(e){
+        // alert('변수형 함수');
+        var a1 = e*e;
+        return a1;
+    }
+
+    function cal() {
+        var plus = al6(5) + al6(6);
+        alert(plus);
+    }
+
+    function con(){
+        var confirm1 = confirm("확인을 누르면 true 반환");
+        alert(confirm1);
+    }
+
+    function prom(){
+        var prompt1 = prompt("질문입니다.");
+        alert(prompt1);
+    }
+
+    function subs(){
+        var prompt1 = prompt("질문입니다.");
+        var sub = prompt1.substring(1, 4);
+        alert(sub);
+    }
+
+    function spli(){
+        var sp = 'a b c d e f';
+        var sp2 = sp.split(' ');
+        alert(sp2);
+    }
+
+    function incl(){
+        var sentence = 'culture, experience, education, symbol, effect, liberty, affair';
+        var check = sentence.includes('cul');
+        alert(check);
+    }
+
+    var arr = new Array();
+
+    function array(){
+        while(true){
+            var prom = prompt("배열에 입력할 데이터");
+
+            if(prom=='0'){
+                break;
+            }else if(prom=='1'){
+                var index = prompt("삭제할 index를 입력하세요");
+                arr.splice(index, 1);
+                alert(arr);
+            }else{
+                arr.push(prom);
+                alert(arr);
+                alert('종료 원할시 0 입력');
+            }
+        }
+    }
+
+    function toggle(){
+        var id = document.getElementById('btn1');
+
+        if(id.style.display == "none"){
+            id.style.display = "block";
+        }else{
+            id.style.display = "none";
+        }
+    }
+
+</script>
+</head>
+<body>
+    <!-- 아무거나 -->
+    <div><button type="button" id="btn1" name="btn1" onclick="array()">버튼입니다</button></div>
+    <div><button type="button" id="btn2" name="btn2" onclick="toggle()">토글</button></div>
+</body>
+</html>

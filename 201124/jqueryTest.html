@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 로컬파일 사용 -->
+<script src="js/jquery-3.5.1.min.js"></script>
+<!-- <script src="js/jquery-3.5.1.js"></script> -->
+
+<!-- cdn -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+<!-- jQuery 사이트에서 직접 다운로드 -->
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+
+<script>
+
+var child;
+
+
+    $(document).ready(function(){
+        // alert('jQuery 시작');
+        // var testId = document.getElementById('testId');
+        // testId.value = 'Y';
+        // document.getElementById('testId').value = 'zz';
+
+        // $("#testId").val('N');
+
+        //$(".testClassName").val('N');
+        //$('[name="testName"]').val('N');
+
+        // $('[value="Y"]').val('N');
+
+        // var obj = document.querySelectorAll('[value="Y"');
+        // obj[0].value = 'N';
+        // alert(value);
+
+        // $() 팩토리 함수:
+        // $() 함수는 괄호 안에 CSS 선택자를 정의하여 DOM 노드(element)를 반환한다.
+        
+        //$("#testDiv").css("background", "yellow");
+
+        //$("*").css("border", "1px solid black");
+
+        // >는 직계 하위 엘리먼트 " "은 하위 어딘가의 엘리먼트
+        // $("#testDiv > #testTable").css("font-size", "50px");
+
+        // $("p").eq(0).css("font-size", "30px");
+        // $("p").eq($("p").index($("#testElement2"))).css("font-size", "30px");
+        // alert($("p").index($("#testElement2")));
+
+        // https://api.jquery.com/ -> jQuery 전체 메서드
+
+
+        $.each($("p"), function(index, item){
+            console.log(index);
+            console.log(item);
+
+            if(index == 2){
+                $(item).css("font-size", "30px");
+            }
+
+            $(item).eq(0).css("font-size", "30px");
+            
+        });
+
+        // winObj();
+        
+
+        
+        $("#btn1").on("click", function() {
+            winOpen();
+        });
+
+        $("#btn2").on("click", function() {
+            var output = prompt('전달할 내용을 입력하세요.');
+            console.log('output:' + output);
+            console.log(child);
+            child.document.write(output + '<br>' + '<button id="btnClose">종료</button>');
+
+            //child.text(output);
+        });
+
+    })
+    
+
+    function winObj(){
+        var output = '';
+        for(var key in window){
+            output+= '·' + key + ': ' + window[key] + '\n';
+        }
+        console.log(output);
+    }
+
+    function winOpen(){
+        // window.open();
+        // window.open('http://naver.com', 'child', 'width=1000 height=800', true);
+
+        // child = window.open('', '', 'width=500, height=300');
+        // child.document.write('<h1>From ParentWindow</h1>');
+        // child = window.open('C:/Users/miroq/visual%20studio%20code/winPage.html', 'child', 'width=1000 height=800', true);
+        // child = window.open('C:/Users/miroq/visual%20studio%20code/winPage.html', '', 'width=500 height=300');
+    }
+</script>
+<body>
+    <input type="text" id="testId" name="testName" class="testClassName" value="Y"> value 값 추출
+
+    <div id="testDiv">
+        <h1>테스트용 영역</h1>
+        <table id="testTable">
+            <th>
+                제목1
+            </th>
+            <th>
+                제목2
+            </th>
+            <th>
+                제목3
+            </th>
+            <tr>
+                <td>
+                    칼럼1
+                </td>
+                <td>
+                    칼럼2
+                </td>
+                <td>
+                    칼럼3
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    칼럼4
+                </td>
+                <td>
+                    칼럼5
+                </td>
+                <td>
+                    칼럼6
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <p id="testElement1">안녕하세요.</p>
+    <p id="testElement2">오늘의 날씨는 어떤가요?</p>
+    <p id="testElement3">저는 영국에 살아요.</p>
+
+    <button type="button" id="btn1">버튼</button>
+    <button type="button" id="btn2">값 전달</button>
+</body>
+</html>
