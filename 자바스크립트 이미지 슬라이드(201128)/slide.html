@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<style>
+    #wrapSlide{
+        position: absolute;
+        left: 27%;
+    }
+
+    #slideArea{
+        width: 800px;
+        height: 600px;
+    }
+
+    #slideImage{
+        width: 800px;
+        height: 600px;
+    }
+
+    #prev{
+        position: relative;
+        font-size: 50px;
+        bottom: 370px;
+        left: 20px;
+        opacity: 0.3;
+    }
+
+    #next{
+        position: relative;
+        font-size: 50px;
+        bottom: 370px;
+        left: 700px;
+        opacity: 0.3;
+    }
+
+    #dotArea{
+        position: relative;
+        left: 370px;
+        width: 120px;
+        height: 30px;
+        margin-top: 5px;
+    }
+
+    .dotImage{
+        margin-left: 5px;
+    }
+
+</style>
+<script>
+    const slideIndex = ['image1.png', 'image2.png', 'image3.png', 'image4.png', 'image5.png'];
+    let currentIndex = slideIndex[0];
+    const imagePath = 'image\\';
+    const dotPath = 'image\\dot.png';
+
+
+    $(document).ready(function(){
+    // $ -> 선택자
+    // css와 동일한 문법으로 사용 가능
+    // id는 #을 붙이고, class는 .을 붙여 구분
+    // #dotArea
+    // .dotArea
+    // var id = document.getElementById('dotArea');
+
+        $("#slideImage").prop("src", imagePath + slideIndex[0]);
+
+        slideIndex.forEach(function(item, index, array){
+            let img = document.createElement("img");
+            img.setAttribute("src", dotPath);
+            img.setAttribute("width", "15px");
+            img.setAttribute("height", "15px");
+            img.setAttribute("id", "dotImage" + index);
+            img.setAttribute("class", "dotImage");
+            img.setAttribute("onclick", "dotClickEvent(" + index + ")");
+
+            document.querySelector("#dotArea").appendChild(img);
+        });
+    });
+
+
+    function prev(){
+        slideIndex.some(function(item, index, array){
+            if(index != 0){
+                if(item == currentIndex){
+                    $("#slideImage").prop("src", imagePath + slideIndex[index - 1]);
+                    currentIndex = slideIndex[index - 1];
+
+                    return true;
+                }
+            }else{
+                if(item == currentIndex){
+                    $("#slideImage").prop("src", imagePath + slideIndex[slideIndex.length - 1]);
+                    currentIndex = slideIndex[slideIndex.length - 1];
+
+                    return true;
+                }
+            }
+        });
+    }
+
+
+    function next(){
+        slideIndex.some(function(item, index, array){
+            if(index != slideIndex.length - 1){
+                if(item == currentIndex){
+                    $("#slideImage").prop("src", imagePath + slideIndex[index + 1]);
+                    currentIndex = slideIndex[index + 1];
+
+                    return true;
+                }
+            }else{
+                if(item == currentIndex){
+                    $("#slideImage").prop("src", imagePath + slideIndex[0]);
+                    currentIndex = slideIndex[0];
+
+                    return true;
+                }
+            }
+        });
+    }
+
+    function opacityIn(obj){
+        obj.style.opacity = "0.5";
+        $("#prev").css("opacity", 0.7);
+        $("#next").css("opacity", 0.7);
+    }
+
+    function opacityOut(obj){
+        obj.style.opacity = "1";
+        $("#prev").css("opacity", 0.3);
+        $("#next").css("opacity", 0.3);
+    }
+
+    function dotClickEvent(index){
+        $("#slideImage").prop("src", imagePath + slideIndex[index]);
+        currentIndex = slideIndex[index];
+    }
+</script>
+<body>
+    <div id="wrapSlide">
+        <div id="slideArea" onmouseover="opacityIn(this)" onmouseout="opacityOut(this)">
+            <img src="" id="slideImage" />
+        </div>
+        <div id="dotArea"></div>
+
+        <span id="prev" onclick="prev()"><</span>
+        <span id="next" onclick="next()">></span>
+    </div>
+</body>
+</html>
